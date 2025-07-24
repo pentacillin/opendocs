@@ -51,334 +51,191 @@
     </footer>
 
     <script>
-        class NotFoundHandler {
-            constructor() {
-                this.pathPrefix = this.calculatePathPrefix();
-                this.init();
-            }
-
-            calculatePathPrefix() {
-                const path = window.location.pathname;
-                const depth = (path.match(/\//g) || []).length - 1;
-                return depth > 0 ? '../'.repeat(depth) : '';
-            }
-
-            async init() {
-                // Fix CSS path for GitHub Pages
-                if (this.pathPrefix) {
-                    const cssLink = document.querySelector('link[href="/css/style.css"]');
-                    if (cssLink) {
-                        cssLink.href = this.pathPrefix + 'css/style.css';
-                    }
-                }
-
-                // Analyze current path
-                await this.analyzePath();
-            }
-
-            async analyzePath() {
-                const path = window.location.pathname;
-                console.log('Analyzing path:', path);
-
-                try {
-                    if (this.isValidPath(path)) {
-                        console.log('Valid path detected, loading content...');
-                        await this.loadValidPath(path);
-                    } else {
-                        console.log('Invalid path detected, loading 404 page...');
-                        await this.load404Page();
-                    }
-                } catch (error) {
-                    console.error('Error in analyzePath:', error);
-                    this.showError(`Lỗi khi xử lý: ${error.message}`);
-                }
-            }
-
-            isValidPath(path) {
-                // Kiểm tra format /open/{type}/{name}
-                const pathParts = path.split('/').filter(part => part !== '');
-                
-                if (pathParts.length !== 3 || pathParts[0] !== 'open') {
-                    return false;
-                }
-
-                const [, type, name] = pathParts;
-
-                // Kiểm tra type hợp lệ
-                if (!['privacy-policy', 'contact-us'].includes(type)) {
-                    return false;
-                }
-
-                // Kiểm tra name không rỗng và hợp lệ
-                if (!name || name.trim() === '' || !/^[a-zA-Z0-9\-_]+$/.test(name)) {
-                    return false;
-                }
-
-                return true;
-            }
-
-            async loadValidPath(path) {
-                const pathParts = path.split('/').filter(part => part !== '');
-                const [, type, name] = pathParts;
-
-                try {
-                    const filePath = `${this.pathPrefix}data/${type}/${name}.md`;
-                    console.log('Attempting to load:', filePath);
-
-                    const response = await fetch(filePath);
-                    
-                    if (!response.ok) {
-                        console.log('File not found, generating dynamic 404...');
-                        await this.loadDynamic404(name, type);
-                        return;
-                    }
-
-                    const markdownText = await response.text();
-                    const htmlContent = marked.parse(markdownText);
-                    
-                    this.showContent(htmlContent, name, type);
-                    
-                } catch (error) {
-                    console.error('Error loading valid path:', error);
-                    await this.loadDynamic404(name, type);
-                }
-            }
-
-            async load404Page() {
-                try {
-                    const filePath = `${this.pathPrefix}data/page/404.md`;
-                    console.log('Loading 404 page from:', filePath);
-
-                    const response = await fetch(filePath);
-                    
-                    if (!response.ok) {
-                        // Nếu không có file 404.md, tạo nội dung mặc định
-                        const defaultContent = this.getDefault404Content();
-                        const htmlContent = marked.parse(defaultContent);
-                        this.showContent(htmlContent, '404', 'page', true);
-                        return;
-                    }
-
-                    const markdownText = await response.text();
-                    const htmlContent = marked.parse(markdownText);
-                    
-                    this.showContent(htmlContent, '404', 'page', true);
-                    
-                } catch (error) {
-                    console.error('Error loading 404 page:', error);
-                    const defaultContent = this.getDefault404Content();
-                    const htmlContent = marked.parse(defaultContent);
-                    this.showContent(htmlContent, '404', 'page', true);
-                }
-            }
-
-            async loadDynamic404(name, type) {
-                const content404 = this.generateDynamic404Content(name, type);
-                const htmlContent = marked.parse(content404);
-                this.showContent(htmlContent, name, type, true);
-            }
-
-            generateDynamic404Content(name, type) {
-                const typeDisplay = type === 'privacy-policy' ? 'Privacy Policy' : 'Contact Us';
-                const currentPath = window.location.pathname;
-
-                return `# 404 - File Không Tồn Tại
-
-## ${typeDisplay} cho "${name}" không tìm thấy
-
-Đường dẫn **${currentPath}** hợp lệ nhưng file tương ứng không tồn tại trong hệ thống.
-
-### 📁 Thông tin file:
-- **Loại**: ${typeDisplay}
-- **Tên**: ${name}
-- **Đường dẫn file**: \`data/${type}/${name}.md\`
-- **URL hiện tại**: \`${currentPath}\`
-
-### 🔍 Có thể bạn đang tìm:
-
-- [Privacy Policy mẫu](/open/privacy-policy/example)
-- [Contact Us mẫu](/open/contact-us/example)
-- [Về trang chủ](/)
-
-### 📝 Hướng dẫn tạo file:
-
-1. **Tạo thư mục** (nếu chưa có):
-   \`\`\`
-   mkdir -p data/${type}
-   \`\`\`
-
-2. **Tạo file markdown**:
-   \`\`\`
-   touch data/${type}/${name}.md
-   \`\`\`
-
-3. **Thêm nội dung mẫu**:
-   \`\`\`markdown
-   # ${typeDisplay} - ${name}
-
-   ## Giới thiệu
-   Nội dung ${typeDisplay.toLowerCase()} của ${name}...
-
-   ## Thông tin liên hệ
-   - Email: contact@${name.toLowerCase().replace(/[^a-z0-9]/g, '')}.com
-   - Website: https://${name.toLowerCase().replace(/[^a-z0-9]/g, '')}.com
-   \`\`\`
-
-### ⚡ Tự động tạo file:
-
-Bạn có thể copy nội dung sau vào file \`data/${type}/${name}.md\`:
-
-\`\`\`markdown
-# ${typeDisplay} - ${name}
-
-*Cập nhật lần cuối: ${new Date().toLocaleDateString('vi-VN')}*
-
-## Thông tin chung
-
-Đây là trang ${typeDisplay.toLowerCase()} của **${name}**.
-
-## Liên hệ
-
-- **Email**: info@${name.toLowerCase().replace(/[^a-z0-9]/g, '')}.com
-- **Điện thoại**: +84 123 456 789
-- **Website**: https://${name.toLowerCase().replace(/[^a-z0-9]/g, '')}.com
-
----
-*File này được tạo tự động. Vui lòng cập nhật nội dung phù hợp.*
-\`\`\`
-
----
-
-**💡 Mẹo**: Sau khi tạo file, refresh trang này để xem nội dung mới.`;
-            }
-
-            getDefault404Content() {
-                const currentPath = window.location.pathname;
-                
-                return `# 404 - Trang Không Tìm Thấy
-
-## Oops! Có gì đó không đúng...
-
-Đường dẫn **${currentPath}** không hợp lệ hoặc không tồn tại.
-
-### 🚫 Lý do có thể:
-
-1. **URL không đúng định dạng**
-   - Định dạng đúng: \`/open/{type}/{name}\`
-   - Ví dụ: \`/open/privacy-policy/company-a\`
-
-2. **Type không hợp lệ**
-   - Chỉ hỗ trợ: \`privacy-policy\` và \`contact-us\`
-
-3. **Tên file không hợp lệ**
-   - Chỉ chấp nhận: chữ cái, số, dấu gạch ngang (-) và gạch dưới (_)
-
-### 🔍 Thử các liên kết sau:
-
-- [🏠 Trang chủ](/)
-- [📋 Privacy Policy mẫu](/open/privacy-policy/example)
-- [📞 Contact Us mẫu](/open/contact-us/example)
-
-### 📖 Hướng dẫn sử dụng:
-
-#### URL hợp lệ:
-- \`/open/privacy-policy/company-a\` ✅
-- \`/open/contact-us/my-business\` ✅
-- \`/open/privacy-policy/example\` ✅
-
-#### URL không hợp lệ:
-- \`/open/invalid-type/company\` ❌
-- \`/open/privacy-policy/\` ❌
-- \`/open/privacy-policy/company with spaces\` ❌
-
-### 🛠️ Cần hỗ trợ?
-
-Nếu bạn cho rằng đây là lỗi hệ thống, vui lòng:
-1. Kiểm tra lại URL
-2. Đảm bảo file markdown tồn tại
-3. Liên hệ quản trị viên nếu vấn đề vẫn tiếp tục
-
----
-
-**Thông tin kỹ thuật:**
-- Path: \`${currentPath}\`
-- Timestamp: ${new Date().toLocaleString('vi-VN')}
-- User Agent: \`${navigator.userAgent.substring(0, 50)}...\``;
-            }
-
-            showContent(htmlContent, name, type, is404 = false) {
-                const contentDiv = document.getElementById('content');
-                const markdownContentDiv = document.getElementById('markdown-content');
-                const breadcrumbDiv = document.getElementById('breadcrumb-text');
-                const loadingDiv = document.getElementById('loading');
-
-                // Ẩn loading
-                loadingDiv.classList.add('hidden');
-
-                // Cập nhật breadcrumb
-                let breadcrumbText = '';
-                if (type === 'page') {
-                    breadcrumbText = '404 - Trang không tìm thấy';
-                } else {
-                    const typeDisplay = type === 'privacy-policy' ? 'Privacy Policy' : 'Contact Us';
-                    const status = is404 ? ' (File không tồn tại)' : '';
-                    breadcrumbText = `${typeDisplay} / ${name}${status}`;
-                }
-                breadcrumbDiv.textContent = breadcrumbText;
-
-                // Cập nhật nội dung
-                markdownContentDiv.innerHTML = htmlContent;
-
-                // Cập nhật title
-                if (type === 'page') {
-                    document.title = '404 - Trang không tìm thấy';
-                } else {
-                    const typeDisplay = type === 'privacy-policy' ? 'Privacy Policy' : 'Contact Us';
-                    const titlePrefix = is404 ? '404 - ' : '';
-                    document.title = `${titlePrefix}${typeDisplay} - ${name}`;
-                }
-
-                // Hiển thị trang
-                contentDiv.classList.remove('hidden');
-
-                // Fix relative links
-                this.fixRelativeLinks(markdownContentDiv);
-
-                // Scroll to top
-                window.scrollTo(0, 0);
-            }
-
-            fixRelativeLinks(container) {
-                const links = container.querySelectorAll('a[href^="/"]');
-                links.forEach(link => {
-                    const href = link.getAttribute('href');
-                    if (href.startsWith('/open/')) {
-                        // Internal link - sẽ được xử lý bởi browser
-                        return;
-                    }
-                    // Các link khác giữ nguyên
-                });
-            }
-
-            showError(message) {
-                const errorDiv = document.getElementById('error');
-                const errorMessageDiv = document.getElementById('error-message');
-                const loadingDiv = document.getElementById('loading');
-
-                // Ẩn loading
-                loadingDiv.classList.add('hidden');
-
-                errorMessageDiv.textContent = message;
-                errorDiv.classList.remove('hidden');
-
-                document.title = 'Lỗi - Policy & Contact Generator';
+class NotFoundHandler {
+    constructor() {
+        this.pathPrefix = this.calculatePathPrefix();
+        this.init();
+    }
+
+    calculatePathPrefix() {
+        const path = window.location.pathname;
+        const depth = (path.match(/\//g) || []).length - 1;
+        return depth > 0 ? '../'.repeat(depth) : '';
+    }
+
+    async init() {
+        // Fix CSS path for GitHub Pages
+        if (this.pathPrefix) {
+            const cssLink = document.querySelector('link[href="/css/style.css"]');
+            if (cssLink) {
+                cssLink.href = this.pathPrefix + 'css/style.css';
             }
         }
 
-        // Khởi tạo khi DOM ready
-        document.addEventListener('DOMContentLoaded', () => {
-            new NotFoundHandler();
-        });
-    </script>
+        // Analyze current path
+        await this.analyzePath();
+    }
+
+    async analyzePath() {
+        const path = window.location.pathname;
+        console.log('Analyzing path:', path);
+
+        try {
+            if (this.isValidPath(path)) {
+                console.log('Valid path detected, loading content...');
+                await this.loadValidPath(path);
+            } else {
+                console.log('Invalid path detected, loading 404 page...');
+                await this.load404Page();
+            }
+        } catch (error) {
+            console.error('Error in analyzePath:', error);
+            this.showError(`Lỗi khi xử lý: ${error.message}`);
+        }
+    }
+
+    isValidPath(path) {
+        // Kiểm tra format /open/{type}/{name}
+        const pathParts = path.split('/').filter(part => part !== '');
+        
+        if (pathParts.length !== 3 || pathParts[0] !== 'open') {
+            return false;
+        }
+
+        const [, type, name] = pathParts;
+
+        // Kiểm tra type hợp lệ
+        if (!['privacy-policy', 'contact-us'].includes(type)) {
+            return false;
+        }
+
+        // Kiểm tra name không rỗng và hợp lệ
+        if (!name || name.trim() === '' || !/^[a-zA-Z0-9\-_]+$/.test(name)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    async loadValidPath(path) {
+        const pathParts = path.split('/').filter(part => part !== '');
+        const [, type, name] = pathParts;
+
+        try {
+            const filePath = `${this.pathPrefix}data/${type}/${name}.md`;
+            console.log('Attempting to load:', filePath);
+
+            const response = await fetch(filePath);
+            
+            if (!response.ok) {
+                console.log('File not found, loading 404...');
+                await this.load404Page();
+                return;
+            }
+
+            const markdownText = await response.text();
+            const htmlContent = marked.parse(markdownText);
+            
+            this.showContent(htmlContent, name, type);
+            
+        } catch (error) {
+            console.error('Error loading valid path:', error);
+            await this.load404Page();
+        }
+    }
+
+    async load404Page() {
+        try {
+            const filePath = `${this.pathPrefix}data/404.md`;
+            console.log('Loading 404 page from:', filePath);
+
+            const response = await fetch(filePath);
+            
+            if (!response.ok) {
+                // Nếu không có file 404.md, tạo nội dung mặc định
+                const defaultContent = `# 404 - Trang Không Tìm Thấy
+
+Xin lỗi, trang bạn đang tìm kiếm không tồn tại.
+
+[Về trang chủ](/)`;
+                const htmlContent = marked.parse(defaultContent);
+                this.showContent(htmlContent, '404', 'error', true);
+                return;
+            }
+
+            const markdownText = await response.text();
+            const htmlContent = marked.parse(markdownText);
+            
+            this.showContent(htmlContent, '404', 'error', true);
+            
+        } catch (error) {
+            console.error('Error loading 404 page:', error);
+            const defaultContent = `# 404 - Trang Không Tìm Thấy
+
+Xin lỗi, trang bạn đang tìm kiếm không tồn tại.
+
+[Về trang chủ](/)`;
+            const htmlContent = marked.parse(defaultContent);
+            this.showContent(htmlContent, '404', 'error', true);
+        }
+    }
+
+    showContent(htmlContent, name, type, is404 = false) {
+        const contentDiv = document.getElementById('content');
+        const markdownContentDiv = document.getElementById('markdown-content');
+        const breadcrumbDiv = document.getElementById('breadcrumb-text');
+        const loadingDiv = document.getElementById('loading');
+
+        // Ẩn loading
+        loadingDiv.classList.add('hidden');
+
+        // Cập nhật breadcrumb
+        let breadcrumbText = '';
+        if (is404) {
+            breadcrumbText = '404 - Trang không tìm thấy';
+        } else {
+            const typeDisplay = type === 'privacy-policy' ? 'Privacy Policy' : 'Contact Us';
+            breadcrumbText = `${typeDisplay} / ${name}`;
+        }
+        breadcrumbDiv.textContent = breadcrumbText;
+
+        // Cập nhật nội dung
+        markdownContentDiv.innerHTML = htmlContent;
+
+        // Cập nhật title
+        if (is404) {
+            document.title = '404 - Trang không tìm thấy';
+        } else {
+            const typeDisplay = type === 'privacy-policy' ? 'Privacy Policy' : 'Contact Us';
+            document.title = `${typeDisplay} - ${name}`;
+        }
+
+        // Hiển thị trang
+        contentDiv.classList.remove('hidden');
+
+        // Scroll to top
+        window.scrollTo(0, 0);
+    }
+
+    showError(message) {
+        const errorDiv = document.getElementById('error');
+        const errorMessageDiv = document.getElementById('error-message');
+        const loadingDiv = document.getElementById('loading');
+
+        // Ẩn loading
+        loadingDiv.classList.add('hidden');
+
+        errorMessageDiv.textContent = message;
+        errorDiv.classList.remove('hidden');
+
+        document.title = 'Lỗi - Policy & Contact Generator';
+    }
+}
+
+// Khởi tạo khi DOM ready
+document.addEventListener('DOMContentLoaded', () => {
+    new NotFoundHandler();
+});
+</script>
 </body>
 </html>
