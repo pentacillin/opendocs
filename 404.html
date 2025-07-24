@@ -15,7 +15,7 @@
         </div>
 
         <div id="error" class="error hidden">
-            <h2>Lỗi</h2>
+            <h2>Error</h2>
             <p id="error-message"></p>
             <button onclick="window.location.href='/opendocs'" class="btn">Back to Home</button>
         </div>
@@ -56,7 +56,7 @@ class NotFoundHandler {
             }
         } catch (error) {
             console.error('Error in analyzePath:', error);
-            this.showError(`Lỗi khi xử lý: ${error.message}`);
+            this.showError(`Error processing request: ${error.message}`);
         }
     }
 
@@ -64,7 +64,7 @@ class NotFoundHandler {
         // Check format /open/{type}/{name}
         const pathParts = path.split('/').filter(part => part !== '');
         
-        if (pathParts.length !== 3 || pathParts[0] !== 'open') {
+        if (pathParts.length !== 3 || pathParts[0] !== 'opendocs') {
             return false;
         }
 
