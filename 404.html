@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Policy & Contact Generator</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
@@ -13,9 +13,9 @@
             <div class="nav-container">
                 <h1 class="nav-title">Policy & Contact Generator</h1>
                 <div class="nav-links">
-                    <a href="#" onclick="navigateTo('/')">Trang chủ</a>
-                    <a href="#" onclick="navigateTo('/open/example/privacy-policy')">Privacy Policy</a>
-                    <a href="#" onclick="navigateTo('/open/example/contact-us')">Contact Us</a>
+                    <a href="#" onclick="navigateTo('/open/privacy-policy/example')">Trang chủ</a>
+                    <a href="#" onclick="navigateTo('/open/privacy-policy/example')">Privacy Policy</a>
+                    <a href="#" onclick="navigateTo('/open/contact-us/example')">Contact Us</a>
                 </div>
             </div>
         </nav>
@@ -43,13 +43,13 @@
                 <div class="feature-card">
                     <h3>Privacy Policy</h3>
                     <p>Hiển thị các chính sách bảo mật từ file markdown</p>
-                    <button onclick="navigateTo('/open/example/privacy-policy')" class="btn">Xem mẫu</button>
+                    <button onclick="navigateTo('/open/privacy-policy/example')" class="btn">Xem mẫu</button>
                 </div>
 
                 <div class="feature-card">
                     <h3>Contact Us</h3>
                     <p>Hiển thị thông tin liên hệ từ file markdown</p>
-                    <button onclick="navigateTo('/open/example/contact-us')" class="btn">Xem mẫu</button>
+                    <button onclick="navigateTo('/open/contact-us/example')" class="btn">Xem mẫu</button>
                 </div>
             </div>
 
@@ -60,7 +60,7 @@
                     <li><strong>name:</strong> Tên file markdown (không bao gồm .md)</li>
                     <li><strong>type:</strong> Loại trang (privacy-policy hoặc contact-us)</li>
                 </ul>
-                <p>Ví dụ: <code>/open/company-a/privacy-policy</code> sẽ load file <code>./data/privacy-policy/company-a.md</code></p>
+                <p>Ví dụ: <code>/open/privacy-policy/company-a</code> sẽ load file <code>./data/privacy-policy/company-a.md</code></p>
             </div>
         </div>
 
@@ -81,6 +81,26 @@
         <p>&copy; 2024 Policy & Contact Generator. Made with ❤️</p>
     </footer>
 
-    <script src="js/app.js"></script>
+    <script>
+// Fix CSS and JS paths for GitHub Pages
+(function() {
+  const path = window.location.pathname;
+  const depth = (path.match(/\//g) || []).length - 1;
+  
+  if (depth > 0) {
+    const prefix = '../'.repeat(depth);
+    
+    // Update CSS
+    const cssLink = document.querySelector('link[href="/css/style.css"]');
+    if (cssLink) {
+      cssLink.href = prefix + 'css/style.css';
+    }
+    
+    // Update JS will be handled in app.js
+    window.pathPrefix = prefix;
+  }
+})();
+</script>
+    <script src="/js/app.js"></script>
 </body>
 </html>
