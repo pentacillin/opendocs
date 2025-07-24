@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Policy & Contact Generator</title>
-    <link rel="stylesheet" href="/open/css/style.css">
+    <title>OpenDocs</title>
+    <link rel="stylesheet" href="/opendocs/css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
     <header>
         <nav class="navbar">
             <div class="nav-container">
-                <h1 class="nav-title">Policy & Contact Generator</h1>
+                <h1 class="nav-title">OpenDocs</h1>
                 <div class="nav-links">
-                    <a href="#" onclick="navigateTo('/open')">Home</a>
-                    <a href="#" onclick="navigateTo('/open/privacy-policy/example')">Privacy Policy</a>
-                    <a href="#" onclick="navigateTo('/open/contact-us/example')">Contact Us</a>
+                    <a href="#" onclick="navigateTo('/opendocs')">Home</a>
+                    <a href="#" onclick="navigateTo('/opendocs/privacy-policy/example')">Privacy Policy</a>
+                    <a href="#" onclick="navigateTo('/opendocs/contact-us/example')">Contact Us</a>
                 </div>
             </div>
         </nav>
@@ -35,7 +35,7 @@
 
         <div id="home" class="page">
             <div class="hero">
-                <h1>Policy & Contact Generator</h1>
+                <h1>OpenDocs</h1>
                 <p>Simple application to display policy and contact pages from markdown files</p>
             </div>
 
@@ -43,24 +43,24 @@
                 <div class="feature-card">
                     <h3>Privacy Policy</h3>
                     <p>Display privacy policies from markdown files</p>
-                    <button onclick="navigateTo('/open/privacy-policy/example')" class="btn">View Example</button>
+                    <button onclick="navigateTo('/opendocs/privacy-policy/example')" class="btn">View Example</button>
                 </div>
 
                 <div class="feature-card">
                     <h3>Contact Us</h3>
                     <p>Display contact information from markdown files</p>
-                    <button onclick="navigateTo('/open/contact-us/example')" class="btn">View Example</button>
+                    <button onclick="navigateTo('/opendocs/contact-us/example')" class="btn">View Example</button>
                 </div>
             </div>
 
             <div class="usage">
                 <h2>How to Use</h2>
-                <p>URL format: <code>/open/{type}/{name}</code></p>
+                <p>URL format: <code>/opendocs/{type}/{name}</code></p>
                 <ul>
                     <li><strong>type:</strong> Page type (privacy-policy or contact-us)</li>
                     <li><strong>name:</strong> Markdown file name (without .md extension)</li>
                 </ul>
-                <p>Example: <code>/open/privacy-policy/company-a</code> will load file <code>./data/privacy-policy/company-a.md</code></p>
+                <p>Example: <code>/opendocs/privacy-policy/company-a</code> will load file <code>./data/privacy-policy/company-a.md</code></p>
             </div>
         </div>
 
@@ -78,10 +78,10 @@
     </main>
 
     <footer class="footer">
-        <p>&copy; 2024 Policy & Contact Generator. Made with ❤️</p>
+        <p>&copy; 2024 OpenDocs. Made with ❤️</p>
     </footer>
     
 </script>
-    <script src="/open/js/app.js"></script>
+    <script src="/opendocs/js/app.js"></script>
 </body>
 </html>
