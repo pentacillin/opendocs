@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
-<!--     <header>
+    <header>
         <nav class="navbar">
             <div class="nav-container">
                 <h1 class="nav-title">OpenDocs</h1>
@@ -19,7 +19,7 @@
                 </div>
             </div>
         </nav>
-    </header> -->
+    </header>
 
     <main class="main-content">
         <div id="loading" class="loading">
@@ -34,12 +34,12 @@
         </div>
 
         <div id="content" class="page hidden">
-<!--             <div class="content-header">
+            <div class="content-header">
                 <button onclick="window.location.href='/opendocs'" class="btn btn-secondary">← Back to Home</button>
                 <div class="breadcrumb">
                     <span id="breadcrumb-text"></span>
                 </div>
-            </div> -->
+            </div>
             <article id="markdown-content" class="markdown-content">
                 <!-- Markdown content will be rendered here -->
             </article>
@@ -165,15 +165,15 @@ class NotFoundHandler {
         // Hide loading
         loadingDiv.classList.add('hidden');
 
-        // // Update breadcrumb
-        // let breadcrumbText = '';
-        // if (is404) {
-        //     breadcrumbText = '404 - Page not found';
-        // } else {
-        //     const typeDisplay = type === 'privacy-policy' ? 'Privacy Policy' : 'Contact Us';
-        //     breadcrumbText = `${typeDisplay} / ${name}`;
-        // }
-        // breadcrumbDiv.textContent = breadcrumbText;
+        // Update breadcrumb
+        let breadcrumbText = '';
+        if (is404) {
+            breadcrumbText = '404 - Page not found';
+        } else {
+            const typeDisplay = type === 'privacy-policy' ? 'Privacy Policy' : 'Contact Us';
+            breadcrumbText = `${typeDisplay} / ${name}`;
+        }
+        breadcrumbDiv.textContent = breadcrumbText;
 
         // Update content
         markdownContentDiv.innerHTML = htmlContent;
