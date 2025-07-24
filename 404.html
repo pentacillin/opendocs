@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Policy & Contact Generator</title>
-    <link rel="stylesheet" href="/open/css/style.css">
+    <title>404 - OpenDocs</title>
+    <link rel="stylesheet" href="/opendocs/css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
     <header>
         <nav class="navbar">
             <div class="nav-container">
-                <h1 class="nav-title">Policy & Contact Generator</h1>
+                <h1 class="nav-title">OpenDocs</h1>
                 <div class="nav-links">
-                    <a href="/">Trang chủ</a>
-                    <a href="/open/privacy-policy/example">Privacy Policy</a>
-                    <a href="/open/contact-us/example">Contact Us</a>
+                    <a href="/">Home</a>
+                    <a href="/opendocs/privacy-policy/example">Privacy Policy</a>
+                    <a href="/opendocs/contact-us/example">Contact Us</a>
                 </div>
             </div>
         </nav>
@@ -24,30 +24,30 @@
     <main class="main-content">
         <div id="loading" class="loading">
             <div class="spinner"></div>
-            <p>Đang kiểm tra và tải nội dung...</p>
+            <p>Checking and loading content...</p>
         </div>
 
         <div id="error" class="error hidden">
             <h2>Lỗi</h2>
             <p id="error-message"></p>
-            <button onclick="window.location.href='/'" class="btn">Về trang chủ</button>
+            <button onclick="window.location.href='/opendocs'" class="btn">Back to Home</button>
         </div>
 
         <div id="content" class="page hidden">
             <div class="content-header">
-                <button onclick="window.location.href='/'" class="btn btn-secondary">← Về trang chủ</button>
+                <button onclick="window.location.href='/opendocs'" class="btn btn-secondary">← Back to Home</button>
                 <div class="breadcrumb">
                     <span id="breadcrumb-text"></span>
                 </div>
             </div>
             <article id="markdown-content" class="markdown-content">
-                <!-- Nội dung markdown sẽ được render ở đây -->
+                <!-- Markdown content will be rendered here -->
             </article>
         </div>
     </main>
 
     <footer class="footer">
-        <p>&copy; 2024 Policy & Contact Generator. Made with ❤️</p>
+        <p>&copy; 2024 OpenDocs. Made with ❤️</p>
     </footer>
 
     <script>
@@ -80,7 +80,7 @@ class NotFoundHandler {
     }
 
     isValidPath(path) {
-        // Kiểm tra format /open/{type}/{name}
+        // Check format /open/{type}/{name}
         const pathParts = path.split('/').filter(part => part !== '');
         
         if (pathParts.length !== 3 || pathParts[0] !== 'open') {
@@ -89,12 +89,12 @@ class NotFoundHandler {
 
         const [, type, name] = pathParts;
 
-        // Kiểm tra type hợp lệ
+        // Check valid type
         if (!['privacy-policy', 'contact-us'].includes(type)) {
             return false;
         }
 
-        // Kiểm tra name không rỗng và hợp lệ
+        // Check name is not empty and valid
         if (!name || name.trim() === '' || !/^[a-zA-Z0-9\-_]+$/.test(name)) {
             return false;
         }
@@ -107,7 +107,7 @@ class NotFoundHandler {
         const [, type, name] = pathParts;
 
         try {
-            const filePath = `/open/data/${type}/${name}.md`;
+            const filePath = `/opendocs/data/${type}/${name}.md`;
             console.log('Attempting to load:', filePath);
 
             const response = await fetch(filePath);
@@ -130,19 +130,15 @@ class NotFoundHandler {
     }
 
     async load404Page() {
+        const defaultContent = "# 404 - Page Not Found\nSorry, the page you are looking for does not exist.\n[Back to Home](/)`;";
         try {
-            const filePath = `/open/data/404.md`;
+            const filePath = `/opendocs/data/404.md`;
             console.log('Loading 404 page from:', filePath);
 
             const response = await fetch(filePath);
             
             if (!response.ok) {
-                // Nếu không có file 404.md, tạo nội dung mặc định
-                const defaultContent = `# 404 - Trang Không Tìm Thấy
-
-Xin lỗi, trang bạn đang tìm kiếm không tồn tại.
-
-[Về trang chủ](/)`;
+                // If no 404.md file exists, create default content
                 const htmlContent = marked.parse(defaultContent);
                 this.showContent(htmlContent, '404', 'error', true);
                 return;
@@ -155,11 +151,6 @@ Xin lỗi, trang bạn đang tìm kiếm không tồn tại.
             
         } catch (error) {
             console.error('Error loading 404 page:', error);
-            const defaultContent = `# 404 - Trang Không Tìm Thấy
-
-Xin lỗi, trang bạn đang tìm kiếm không tồn tại.
-
-[Về trang chủ](/)`;
             const htmlContent = marked.parse(defaultContent);
             this.showContent(htmlContent, '404', 'error', true);
         }
@@ -171,31 +162,31 @@ Xin lỗi, trang bạn đang tìm kiếm không tồn tại.
         const breadcrumbDiv = document.getElementById('breadcrumb-text');
         const loadingDiv = document.getElementById('loading');
 
-        // Ẩn loading
+        // Hide loading
         loadingDiv.classList.add('hidden');
 
-        // Cập nhật breadcrumb
+        // Update breadcrumb
         let breadcrumbText = '';
         if (is404) {
-            breadcrumbText = '404 - Trang không tìm thấy';
+            breadcrumbText = '404 - Page not found';
         } else {
             const typeDisplay = type === 'privacy-policy' ? 'Privacy Policy' : 'Contact Us';
             breadcrumbText = `${typeDisplay} / ${name}`;
         }
         breadcrumbDiv.textContent = breadcrumbText;
 
-        // Cập nhật nội dung
+        // Update content
         markdownContentDiv.innerHTML = htmlContent;
 
-        // Cập nhật title
+        // Update title
         if (is404) {
-            document.title = '404 - Trang không tìm thấy';
+            document.title = '404 - Page not found';
         } else {
             const typeDisplay = type === 'privacy-policy' ? 'Privacy Policy' : 'Contact Us';
             document.title = `${typeDisplay} - ${name}`;
         }
 
-        // Hiển thị trang
+        // Show page
         contentDiv.classList.remove('hidden');
 
         // Scroll to top
@@ -207,17 +198,17 @@ Xin lỗi, trang bạn đang tìm kiếm không tồn tại.
         const errorMessageDiv = document.getElementById('error-message');
         const loadingDiv = document.getElementById('loading');
 
-        // Ẩn loading
+        // Hide loading
         loadingDiv.classList.add('hidden');
 
         errorMessageDiv.textContent = message;
         errorDiv.classList.remove('hidden');
 
-        document.title = 'Lỗi - Policy & Contact Generator';
+        document.title = 'Error - OpenDocs';
     }
 }
 
-// Khởi tạo khi DOM ready
+// Initialize when DOM ready
 document.addEventListener('DOMContentLoaded', () => {
     new NotFoundHandler();
 });
