@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 - Policy & Contact Generator</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/open/css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
@@ -53,25 +53,10 @@
     <script>
 class NotFoundHandler {
     constructor() {
-        this.pathPrefix = this.calculatePathPrefix();
         this.init();
     }
 
-    calculatePathPrefix() {
-        const path = window.location.pathname;
-        const depth = (path.match(/\//g) || []).length - 1;
-        return depth > 0 ? '../'.repeat(depth) : '';
-    }
-
     async init() {
-        // Fix CSS path for GitHub Pages
-        if (this.pathPrefix) {
-            const cssLink = document.querySelector('link[href="/css/style.css"]');
-            if (cssLink) {
-                cssLink.href = this.pathPrefix + 'css/style.css';
-            }
-        }
-
         // Analyze current path
         await this.analyzePath();
     }
@@ -122,7 +107,7 @@ class NotFoundHandler {
         const [, type, name] = pathParts;
 
         try {
-            const filePath = `${this.pathPrefix}data/${type}/${name}.md`;
+            const filePath = `/open/data/${type}/${name}.md`;
             console.log('Attempting to load:', filePath);
 
             const response = await fetch(filePath);
@@ -146,7 +131,7 @@ class NotFoundHandler {
 
     async load404Page() {
         try {
-            const filePath = `${this.pathPrefix}data/404.md`;
+            const filePath = `/open/data/404.md`;
             console.log('Loading 404 page from:', filePath);
 
             const response = await fetch(filePath);
