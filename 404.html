@@ -165,15 +165,15 @@ class NotFoundHandler {
         // Hide loading
         loadingDiv.classList.add('hidden');
 
-        // Update breadcrumb
-        let breadcrumbText = '';
-        if (is404) {
-            breadcrumbText = '404 - Page not found';
-        } else {
-            const typeDisplay = type === 'privacy-policy' ? 'Privacy Policy' : 'Contact Us';
-            breadcrumbText = `${typeDisplay} / ${name}`;
-        }
-        breadcrumbDiv.textContent = breadcrumbText;
+        // // Update breadcrumb
+        // let breadcrumbText = '';
+        // if (is404) {
+        //     breadcrumbText = '404 - Page not found';
+        // } else {
+        //     const typeDisplay = type === 'privacy-policy' ? 'Privacy Policy' : 'Contact Us';
+        //     breadcrumbText = `${typeDisplay} / ${name}`;
+        // }
+        // breadcrumbDiv.textContent = breadcrumbText;
 
         // Update content
         markdownContentDiv.innerHTML = htmlContent;
