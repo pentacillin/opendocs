@@ -1,132 +1,149 @@
-# Chính Sách Bảo Mật
+# Privacy Policy
 
-*Cập nhật lần cuối: 24/07/2024*
+*Last updated: July 24, 2024*
 
-## Giới Thiệu
+## Introduction
 
-Chào mừng bạn đến với dịch vụ của chúng tôi. Chúng tôi cam kết bảo vệ quyền riêng tư và thông tin cá nhân của bạn. Chính sách bảo mật này giải thích cách chúng tôi thu thập, sử dụng, và bảo vệ thông tin của bạn.
+This Privacy Policy describes how **[App Name]** ("we," "our," or "us") collects, uses, and shares information when you use our mobile application (the "App") available on the Apple App Store.
 
-## Thông Tin Chúng Tôi Thu Thập
+## Information We Collect
 
-### Thông Tin Cá Nhân
-- **Thông tin định danh**: Họ tên, địa chỉ email, số điện thoại
-- **Thông tin tài khoản**: Tên đăng nhập, mật khẩu (được mã hóa)
-- **Thông tin liên hệ**: Địa chỉ, thông tin thanh toán
+### Information You Provide
+- **Account Information**: Name, email address, username
+- **Profile Information**: Profile picture, preferences, settings
+- **Content**: Messages, posts, comments, or other content you create
+- **Support Communications**: Information you provide when contacting customer support
 
-### Thông Tin Tự Động
-- **Dữ liệu kỹ thuật**: Địa chỉ IP, loại trình duyệt, hệ điều hành
-- **Dữ liệu sử dụng**: Thời gian truy cập, trang đã xem, hành vi người dùng
-- **Cookies và công nghệ tương tự**: Để cải thiện trải nghiệm người dùng
+### Information Collected Automatically
+- **Device Information**: Device model, operating system version, unique device identifiers
+- **Usage Information**: Features used, time spent in app, crash reports
+- **Location Information**: Approximate location based on IP address (precise location only with your permission)
+- **Analytics Data**: App performance, user interactions, error logs
 
-## Cách Chúng Tôi Sử Dụng Thông Tin
+### Information from Third Parties
+- **Social Media**: If you connect social media accounts, we may receive profile information
+- **Apple Services**: Information from Apple Sign-In, App Store, or other Apple services
 
-### Mục Đích Chính
-1. **Cung cấp dịch vụ**: Xử lý đơn hàng, hỗ trợ khách hàng
-2. **Cải thiện dịch vụ**: Phân tích và tối ưu hóa trải nghiệm
-3. **Liên lạc**: Gửi thông báo quan trọng và cập nhật dịch vụ
-4. **Bảo mật**: Phát hiện và ngăn chặn gian lận
+## How We Use Information
 
-### Cơ Sở Pháp Lý
-- Thực hiện hợp đồng với bạn
-- Tuân thủ nghĩa vụ pháp lý
-- Lợi ích hợp pháp của chúng tôi
-- Sự đồng ý của bạn
+We use the collected information to:
 
-## Chia Sẻ Thông Tin
+### Provide and Improve Services
+- Operate and maintain the App
+- Provide customer support
+- Fix bugs and improve performance
+- Develop new features
 
-Chúng tôi **KHÔNG** bán thông tin cá nhân của bạn. Chúng tôi chỉ chia sẻ thông tin trong các trường hợp sau:
+### Personalization
+- Customize your experience
+- Provide relevant content and recommendations
+- Remember your preferences and settings
 
-### Đối Tác Dịch Vụ
-- Nhà cung cấp dịch vụ thanh toán
-- Dịch vụ lưu trữ đám mây
-- Công cụ phân tích và marketing
+### Communication
+- Send important updates about the App
+- Respond to your inquiries
+- Send promotional messages (with your consent)
 
-### Yêu Cầu Pháp Lý
-- Tuân thủ pháp luật và quy định
-- Bảo vệ quyền và tài sản của chúng tôi
-- Đảm bảo an toàn cho người dùng
+### Safety and Security
+- Detect and prevent fraud
+- Protect against security threats
+- Enforce our Terms of Service
 
-## Bảo Mật Thông Tin
+### Analytics and Research
+- Understand how users interact with the App
+- Analyze usage patterns and trends
+- Conduct research to improve our services
 
-### Biện Pháp Kỹ Thuật
-- **Mã hóa**: SSL/TLS cho truyền tải dữ liệu
-- **Mã hóa cơ sở dữ liệu**: AES-256 cho dữ liệu nhạy cảm
-- **Xác thực đa yếu tố**: Cho các tài khoản quan trọng
+## Information Sharing
 
-### Biện Pháp Tổ Chức
-- Đào tạo nhân viên về bảo mật
-- Kiểm soát truy cập nghiêm ngặt
-- Kiểm tra bảo mật định kỳ
+We do not sell your personal information. We may share information in the following circumstances:
 
-## Quyền Của Bạn
+### Service Providers
+We work with third-party companies that help us operate the App:
+- **Cloud Storage**: AWS, Google Cloud, or similar services
+- **Analytics**: Apple Analytics, Firebase Analytics
+- **Customer Support**: Help desk and support tools
+- **Payment Processing**: Apple In-App Purchases
 
-Theo luật bảo vệ dữ liệu, bạn có các quyền sau:
+### Legal Requirements
+We may disclose information if required by law or to:
+- Comply with legal processes
+- Protect our rights and property
+- Ensure user safety
+- Investigate potential violations
 
-### Quyền Truy Cập
-- Yêu cầu bản sao thông tin cá nhân của bạn
-- Biết cách thông tin được sử dụng
+### Business Transfers
+If we are involved in a merger, acquisition, or sale of assets, your information may be transferred as part of that transaction.
 
-### Quyền Chỉnh Sửa
-- Cập nhật thông tin không chính xác
-- Bổ sung thông tin thiếu sót
+## Data Retention
 
-### Quyền Xóa
-- Yêu cầu xóa thông tin cá nhân
-- "Quyền được quên lãng"
+We retain your information for as long as necessary to provide our services and fulfill the purposes outlined in this policy:
 
-### Quyền Hạn Chế
-- Hạn chế việc xử lý thông tin
-- Phản đối việc sử dụng cho mục đích marketing
+- **Account Information**: Until you delete your account
+- **Usage Data**: Up to 2 years for analytics purposes
+- **Support Communications**: Up to 3 years
+- **Legal Requirements**: As required by applicable law
 
-## Cookies và Công Nghệ Theo Dõi
+## Your Rights and Choices
 
-### Loại Cookies
-- **Cookies cần thiết**: Cho chức năng cơ bản của website
-- **Cookies phân tích**: Để hiểu cách bạn sử dụng dịch vụ
-- **Cookies marketing**: Để cá nhân hóa quảng cáo
+### Account Management
+- **Access**: View your personal information in the App settings
+- **Update**: Modify your profile and account information
+- **Delete**: Delete your account and associated data
 
-### Quản Lý Cookies
-Bạn có thể:
-- Từ chối cookies không cần thiết
-- Xóa cookies đã lưu
-- Cài đặt trình duyệt để chặn cookies
+### Privacy Controls
+- **Location Services**: Control location access in iOS Settings
+- **Notifications**: Manage notification preferences in App settings
+- **Analytics**: Opt out of analytics in App settings
 
-## Lưu Trữ Dữ Liệu
+### Data Portability
+You can request a copy of your data by contacting us at the email below.
 
-### Thời Gian Lưu Trữ
-- **Dữ liệu tài khoản**: Cho đến khi bạn xóa tài khoản
-- **Dữ liệu giao dịch**: 7 năm (theo yêu cầu pháp lý)
-- **Dữ liệu marketing**: 2 năm hoặc cho đến khi bạn từ chối
+### Account Deletion
+To delete your account and all associated data:
+1. Go to App Settings > Account > Delete Account, or
+2. Contact us at privacy@example.com
 
-### Vị Trí Lưu Trữ
-- Máy chủ tại Việt Nam và Singapore
-- Tuân thủ các tiêu chuẩn bảo mật quốc tế
+## Children's Privacy
 
-## Chuyển Giao Dữ Liệu Quốc Tế
+Our App is not intended for children under 13 years of age. We do not knowingly collect personal information from children under 13. If we become aware that we have collected personal information from a child under 13, we will take steps to delete such information.
 
-Khi cần thiết, chúng tôi có thể chuyển dữ liệu ra nước ngoài với các biện pháp bảo vệ:
-- Hợp đồng bảo vệ dữ liệu tiêu chuẩn
-- Chứng nhận Privacy Shield (nếu áp dụng)
-- Quyết định đầy đủ của Ủy ban Châu Âu
+## International Data Transfers
 
-## Thay Đổi Chính Sách
+Your information may be transferred to and processed in countries other than your own. We ensure appropriate safeguards are in place to protect your information in accordance with this Privacy Policy.
 
-Chúng tôi có thể cập nhật chính sách này để:
-- Phản ánh thay đổi trong dịch vụ
-- Tuân thủ luật pháp mới
-- Cải thiện tính minh bạch
+## Security
 
-**Thông báo thay đổi**: Chúng tôi sẽ thông báo qua email và website ít nhất 30 ngày trước khi thay đổi có hiệu lực.
+We implement appropriate technical and organizational measures to protect your information:
+- **Encryption**: Data encrypted in transit and at rest
+- **Access Controls**: Limited access to personal information
+- **Regular Audits**: Security assessments and updates
+- **Incident Response**: Procedures for handling security breaches
 
-## Liên Hệ
+## Third-Party Services
 
-Nếu bạn có câu hỏi về chính sách này, vui lòng liên hệ:
+Our App may contain links to third-party websites or services. This Privacy Policy does not apply to those third-party services. We encourage you to review their privacy policies.
+
+### Apple Services
+When you use Apple services (like Apple Sign-In), Apple's privacy policy applies to information collected by Apple.
+
+## Changes to This Policy
+
+We may update this Privacy Policy from time to time. We will notify you of any material changes by:
+- Posting the updated policy in the App
+- Sending a notification through the App
+- Emailing you at your registered email address
+
+## Contact Us
+
+If you have questions about this Privacy Policy or our privacy practices, please contact us:
 
 - **Email**: privacy@example.com
-- **Điện thoại**: +84 123 456 789
-- **Địa chỉ**: 123 Đường ABC, Quận 1, TP.HCM
-- **Giờ làm việc**: 8:00 - 17:00, Thứ 2 - Thứ 6
+- **Address**: 123 Main Street, City, State 12345
+- **Phone**: +1 (555) 123-4567
+
+For EU residents, you may also contact our Data Protection Officer at: dpo@example.com
 
 ---
 
-*Chính sách này được soạn thảo để tuân thủ GDPR, CCPA và các luật bảo vệ dữ liệu hiện hành.*
+*This Privacy Policy complies with Apple App Store Review Guidelines and applicable privacy laws including GDPR, CCPA, and other regional privacy regulations.*
