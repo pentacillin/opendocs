@@ -8,19 +8,6 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
-<!--     <header>
-        <nav class="navbar">
-            <div class="nav-container">
-                <h1 class="nav-title">OpenDocs</h1>
-                <div class="nav-links">
-                    <a href="/">Home</a>
-                    <a href="/opendocs/privacy-policy/example">Privacy Policy</a>
-                    <a href="/opendocs/contact-us/example">Contact Us</a>
-                </div>
-            </div>
-        </nav>
-    </header> -->
-
     <main class="main-content">
         <div id="loading" class="loading">
             <div class="spinner"></div>
@@ -34,12 +21,6 @@
         </div>
 
         <div id="content" class="page hidden">
-<!--             <div class="content-header">
-                <button onclick="window.location.href='/opendocs'" class="btn btn-secondary">← Back to Home</button>
-                <div class="breadcrumb">
-                    <span id="breadcrumb-text"></span>
-                </div>
-            </div> -->
             <article id="markdown-content" class="markdown-content">
                 <!-- Markdown content will be rendered here -->
             </article>
@@ -159,21 +140,10 @@ class NotFoundHandler {
     showContent(htmlContent, name, type, is404 = false) {
         const contentDiv = document.getElementById('content');
         const markdownContentDiv = document.getElementById('markdown-content');
-        const breadcrumbDiv = document.getElementById('breadcrumb-text');
         const loadingDiv = document.getElementById('loading');
 
         // Hide loading
         loadingDiv.classList.add('hidden');
-
-        // // Update breadcrumb
-        // let breadcrumbText = '';
-        // if (is404) {
-        //     breadcrumbText = '404 - Page not found';
-        // } else {
-        //     const typeDisplay = type === 'privacy-policy' ? 'Privacy Policy' : 'Contact Us';
-        //     breadcrumbText = `${typeDisplay} / ${name}`;
-        // }
-        // breadcrumbDiv.textContent = breadcrumbText;
 
         // Update content
         markdownContentDiv.innerHTML = htmlContent;
