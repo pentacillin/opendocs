@@ -102,7 +102,7 @@ You can request a copy of your data by contacting us at the email below.
 ### Account Deletion
 To delete your account and all associated data:
 1. Go to App Settings > Account > Delete Account, or
-2. Contact us at privacy@example.com
+2. Contact us at [mka1913@outlook.com]
 
 ## Children's Privacy
 
