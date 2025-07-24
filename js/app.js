@@ -1,3 +1,4 @@
+// Import marked from "marked"
 import marked from "marked"
 
 class MarkdownSPA {
@@ -84,9 +85,9 @@ class MarkdownSPA {
     } catch (error) {
       console.error("Error loading markdown:", error)
 
-      // Nếu file không tồn tại, tạo và hiển thị 404.md
+      // Nếu file không tồn tại, hiển thị 404
       if (error.message.includes("File không tồn tại")) {
-        await this.show404Page(name, type)
+        await this.show404Page()
       } else {
         this.showError(`Không thể tải file: ${error.message}`)
       }
@@ -115,54 +116,27 @@ class MarkdownSPA {
   }
 
   // Hiển thị trang 404
-  async show404Page(name, type) {
-    const content404 = this.generate404Content(name, type)
-    const htmlContent = marked.parse(content404)
-    this.showContentPage(htmlContent, name, type, true)
-  }
+  async show404Page() {
+    try {
+      const filePath = `${this.pathPrefix}data/404.md`
+      const response = await fetch(filePath)
 
-  // Tạo nội dung 404.md
-  generate404Content(name, type) {
-    const typeDisplay = type === "privacy-policy" ? "Privacy Policy" : "Contact Us"
+      let content404
+      if (!response.ok) {
+        content404 = `# 404 - Trang Không Tìm Thấy
 
-    return `# 404 - Trang Không Tồn Tại
+Xin lỗi, trang bạn đang tìm kiếm không tồn tại.
 
-## Oops! Không tìm thấy trang này
+[Về trang chủ](/)`
+      } else {
+        content404 = await response.text()
+      }
 
-Trang **${typeDisplay}** cho **${name}** không tồn tại trong hệ thống.
-
-### Có thể bạn đang tìm:
-
-- [Privacy Policy mẫu](/open/privacy-policy/example)
-- [Contact Us mẫu](/open/contact-us/example)
-- [Về trang chủ](/)
-
-### Thông tin yêu cầu:
-- **Loại trang**: ${typeDisplay}
-- **Tên**: ${name}
-- **Đường dẫn file**: \`./data/${type}/${name}.md\`
-
-### Hướng dẫn tạo file:
-
-1. Tạo thư mục \`data/${type}/\` nếu chưa có
-2. Tạo file \`${name}.md\` trong thư mục đó
-3. Thêm nội dung markdown cho trang của bạn
-
-### Ví dụ nội dung file:
-
-\`\`\`markdown
-# ${typeDisplay} - ${name}
-
-Nội dung ${typeDisplay.toLowerCase()} của ${name} ở đây...
-
-## Thông tin liên hệ
-- Email: contact@${name.toLowerCase()}.com
-- Điện thoại: +84 123 456 789
-\`\`\`
-
----
-
-*Trang này được tạo tự động khi không tìm thấy file markdown tương ứng.*`
+      const htmlContent = marked.parse(content404)
+      this.showContentPage(htmlContent, "404", "error", true)
+    } catch (error) {
+      this.showError("Không thể tải trang 404")
+    }
   }
 
   // Hiển thị trang chủ
@@ -178,16 +152,25 @@ Nội dung ${typeDisplay.toLowerCase()} của ${name} ở đây...
     const breadcrumbDiv = document.getElementById("breadcrumb-text")
 
     // Cập nhật breadcrumb
-    const typeDisplay = type === "privacy-policy" ? "Privacy Policy" : "Contact Us"
-    const status = is404 ? " (404)" : ""
-    breadcrumbDiv.textContent = `${typeDisplay} / ${name}${status}`
+    let breadcrumbText
+    if (is404) {
+      breadcrumbText = "404 - Trang không tìm thấy"
+    } else {
+      const typeDisplay = type === "privacy-policy" ? "Privacy Policy" : "Contact Us"
+      breadcrumbText = `${typeDisplay} / ${name}`
+    }
+    breadcrumbDiv.textContent = breadcrumbText
 
     // Cập nhật nội dung
     markdownContentDiv.innerHTML = htmlContent
 
     // Cập nhật title
-    const titlePrefix = is404 ? "404 - " : ""
-    document.title = `${titlePrefix}${typeDisplay} - ${name}`
+    if (is404) {
+      document.title = "404 - Trang không tìm thấy"
+    } else {
+      const typeDisplay = type === "privacy-policy" ? "Privacy Policy" : "Contact Us"
+      document.title = `${typeDisplay} - ${name}`
+    }
 
     // Hiển thị trang
     contentDiv.classList.remove("hidden")
@@ -248,6 +231,9 @@ function navigateTo(path) {
     app.navigateTo(path)
   }
 }
+
+// Make navigateTo available globally
+window.navigateTo = navigateTo
 
 // Khởi tạo khi DOM ready
 document.addEventListener("DOMContentLoaded", () => {
