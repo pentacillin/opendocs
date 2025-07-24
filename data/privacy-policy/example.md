@@ -1,10 +1,10 @@
-# Privacy Policy
+# Privacy Policy for [App Name]
 
 *Last updated: July 24, 2024*
 
 ## Introduction
 
-This Privacy Policy describes how **[App Name]** ("we," "our," or "us") collects, uses, and shares information when you use our mobile application (the "App") available on the Apple App Store.
+This Privacy Policy describes how **[App Name]** ("we," "our," or "us") collects, uses, and shares information when you use our mobile application (the "App").
 
 ## Information We Collect
 
@@ -139,10 +139,7 @@ We may update this Privacy Policy from time to time. We will notify you of any m
 If you have questions about this Privacy Policy or our privacy practices, please contact us:
 
 - **Email**: privacy@example.com
-- **Address**: 123 Main Street, City, State 12345
 - **Phone**: +1 (555) 123-4567
-
-For EU residents, you may also contact our Data Protection Officer at: dpo@example.com
 
 ---
 
