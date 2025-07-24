@@ -13,7 +13,7 @@
             <div class="nav-container">
                 <h1 class="nav-title">Policy & Contact Generator</h1>
                 <div class="nav-links">
-                    <a href="#" onclick="navigateTo('/open/privacy-policy/example')">Trang chủ</a>
+                    <a href="#" onclick="navigateTo('/open')">Home</a>
                     <a href="#" onclick="navigateTo('/open/privacy-policy/example')">Privacy Policy</a>
                     <a href="#" onclick="navigateTo('/open/contact-us/example')">Contact Us</a>
                 </div>
@@ -24,55 +24,55 @@
     <main class="main-content">
         <div id="loading" class="loading hidden">
             <div class="spinner"></div>
-            <p>Đang tải...</p>
+            <p>Loading...</p>
         </div>
 
         <div id="error" class="error hidden">
-            <h2>Lỗi</h2>
+            <h2>Error</h2>
             <p id="error-message"></p>
-            <button onclick="navigateTo('/')" class="btn">Về trang chủ</button>
+            <button onclick="navigateTo('/open')" class="btn">Back to Home</button>
         </div>
 
         <div id="home" class="page">
             <div class="hero">
                 <h1>Policy & Contact Generator</h1>
-                <p>Ứng dụng đơn giản để hiển thị các trang policy và contact từ file markdown</p>
+                <p>Simple application to display policy and contact pages from markdown files</p>
             </div>
 
             <div class="features">
                 <div class="feature-card">
                     <h3>Privacy Policy</h3>
-                    <p>Hiển thị các chính sách bảo mật từ file markdown</p>
-                    <button onclick="navigateTo('/open/privacy-policy/example')" class="btn">Xem mẫu</button>
+                    <p>Display privacy policies from markdown files</p>
+                    <button onclick="navigateTo('/open/privacy-policy/example')" class="btn">View Example</button>
                 </div>
 
                 <div class="feature-card">
                     <h3>Contact Us</h3>
-                    <p>Hiển thị thông tin liên hệ từ file markdown</p>
-                    <button onclick="navigateTo('/open/contact-us/example')" class="btn">Xem mẫu</button>
+                    <p>Display contact information from markdown files</p>
+                    <button onclick="navigateTo('/open/contact-us/example')" class="btn">View Example</button>
                 </div>
             </div>
 
             <div class="usage">
-                <h2>Cách sử dụng</h2>
-                <p>URL có dạng: <code>/open/{name}/{type}</code></p>
+                <h2>How to Use</h2>
+                <p>URL format: <code>/open/{type}/{name}</code></p>
                 <ul>
-                    <li><strong>name:</strong> Tên file markdown (không bao gồm .md)</li>
-                    <li><strong>type:</strong> Loại trang (privacy-policy hoặc contact-us)</li>
+                    <li><strong>type:</strong> Page type (privacy-policy or contact-us)</li>
+                    <li><strong>name:</strong> Markdown file name (without .md extension)</li>
                 </ul>
-                <p>Ví dụ: <code>/open/privacy-policy/company-a</code> sẽ load file <code>./data/privacy-policy/company-a.md</code></p>
+                <p>Example: <code>/open/privacy-policy/company-a</code> will load file <code>./data/privacy-policy/company-a.md</code></p>
             </div>
         </div>
 
         <div id="content" class="page hidden">
             <div class="content-header">
-                <button onclick="navigateTo('/')" class="btn btn-secondary">← Về trang chủ</button>
+                <button onclick="navigateTo('/')" class="btn btn-secondary">← Back to Home</button>
                 <div class="breadcrumb">
                     <span id="breadcrumb-text"></span>
                 </div>
             </div>
             <article id="markdown-content" class="markdown-content">
-                <!-- Nội dung markdown sẽ được render ở đây -->
+                <!-- Markdown content will be rendered here -->
             </article>
         </div>
     </main>
@@ -80,26 +80,7 @@
     <footer class="footer">
         <p>&copy; 2024 Policy & Contact Generator. Made with ❤️</p>
     </footer>
-
-    <script>
-// Fix CSS and JS paths for GitHub Pages
-(function() {
-  const path = window.location.pathname;
-  const depth = (path.match(/\//g) || []).length - 1;
-  
-  if (depth > 0) {
-    const prefix = '../'.repeat(depth);
     
-    // Update CSS
-    const cssLink = document.querySelector('link[href="/css/style.css"]');
-    if (cssLink) {
-      cssLink.href = prefix + 'css/style.css';
-    }
-    
-    // Update JS will be handled in app.js
-    window.pathPrefix = prefix;
-  }
-})();
 </script>
     <script src="/open/js/app.js"></script>
 </body>
