@@ -6,17 +6,17 @@ We value your feedback, questions, and concerns. If you need assistance or would
 
 ## **Support Contact Information**
 
-- **Email**: [email]  
+- **Email**: [ngothientuan9029@icloud.com]  
   For all inquiries, please email us at the address above, and we will respond as soon as possible.
 
-- **Phone**: [phone]  
+- **Phone**: [+1 (737) 520-5869]  
   For urgent issues, you can reach us by phone during working hours.
 
 ---
 
 ## **In-App Support**
 
-For faster support, you can also use the in-app support feature available in the **[App Name]** application by navigating to:  
+For faster support, you can also use the in-app support feature available in the **[Simple base codec]** application by navigating to:  
 **Settings > Help & Support**.
 
 ---
@@ -31,4 +31,4 @@ If you encounter any technical issues, please provide detailed information about
 
 ---
 
-**Thank you for using [App Name]!**
+**Thank you for using Simple base codec!**

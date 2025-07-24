@@ -1,10 +1,10 @@
-# Privacy Policy for [App Name]
+# Privacy Policy for [Convertio mea]
 
 *Last updated: July 24, 2024*
 
 ## Introduction
 
-This Privacy Policy describes how **[App Name]** ("we," "our," or "us") collects, uses, and shares information when you use our mobile application (the "App").
+This Privacy Policy describes how **[Convertio mea]** ("we," "our," or "us") collects, uses, and shares information when you use our mobile application (the "App").
 
 ## Information We Collect
 
@@ -138,8 +138,8 @@ We may update this Privacy Policy from time to time. We will notify you of any m
 
 If you have questions about this Privacy Policy or our privacy practices, please contact us:
 
-- **Email**: [email]
-- **Phone**: [phone]
+- **Email**: metintartann@outlook.com
+- **Phone**: +1 (321) 513-8051
 
 ---
 
